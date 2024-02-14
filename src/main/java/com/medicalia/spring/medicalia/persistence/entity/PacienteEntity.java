@@ -1,10 +1,11 @@
 package com.medicalia.spring.medicalia.persistence.entity;
 
-import com.medicalia.spring.medicalia.model.dto.EspecialidadEnum;
+import java.time.LocalDate;
 
+import com.medicalia.spring.medicalia.model.dto.DireccionDto;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,26 +15,32 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter @Setter
-@Entity
-@Table(name="medico")
-public class MedicoEntity {
 
+@Entity
+@Table(name="paciente")
+public class PacienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
 
+    private String apellido;
+
+    @Column(name="fecha_nacimiento")
+    private LocalDate fechaNacimiento;
+
+    private String genero;
+
+    @Column(name="telefono")
+    private Integer numeroTelefono;
+
     private String email;
 
-    private Integer documento;
-    
-    @Enumerated(EnumType.STRING)
-    private EspecialidadEnum especialidad;
-    
     @OneToOne
     @JoinColumn(name = "direccion_id", insertable = false, updatable = false)
-    private DireccionEntity direccion;
+    private DireccionDto direccion;
+
+
 }

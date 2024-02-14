@@ -42,7 +42,6 @@ public class MedicoService implements IMedicoService{
         medicoDto.setEmail(medicoDto.getEmail()== null ? medicoDto2.get().getEmail() : medicoDto.getEmail());
         medicoDto.setNombre(medicoDto.getNombre()== null ? medicoDto2.get().getNombre() : medicoDto.getNombre());
         medicoDto.setDocumento(medicoDto.getDocumento()==null ? medicoDto2.get().getDocumento() : medicoDto.getDocumento());
-        medicoDto.setDireccion(medicoDto.getDireccion() == null ? medicoDto2.get().getDireccion() : medicoDto.getDireccion());
         medicoDto.setEspecialidad(medicoDto.getEspecialidad() == null ? medicoDto2.get().getEspecialidad() : medicoDto.getEspecialidad());
         return Optional.of(iMedicoRepository.save(medicoDto));
     }

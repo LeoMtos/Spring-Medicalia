@@ -9,6 +9,7 @@ import com.medicalia.spring.medicalia.model.dto.MedicoDto;
 import com.medicalia.spring.medicalia.model.repository.IMedicoRepository;
 import com.medicalia.spring.medicalia.persistence.entity.MedicoEntity;
 import com.medicalia.spring.medicalia.persistence.mapper.IMedicoMapper;
+import com.medicalia.spring.medicalia.persistence.repository.crud.IMedicoCrudRepository;
 
 import lombok.RequiredArgsConstructor;
 

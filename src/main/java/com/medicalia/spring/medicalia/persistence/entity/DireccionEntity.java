@@ -1,6 +1,5 @@
 package com.medicalia.spring.medicalia.persistence.entity;
 
-import com.medicalia.spring.medicalia.persistence.repository.MedicoRepository;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
