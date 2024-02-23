@@ -11,7 +11,7 @@ import com.medicalia.spring.medicalia.persistence.entity.PacienteEntity;
 
 @Mapper(componentModel = "spring")
 public interface IPacienteMapper {
-
+ 
     PacienteDto toPacienteDto(PacienteEntity pacienteEntity);
 
     @Mapping(target = "direccion", ignore = true)
