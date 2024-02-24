@@ -17,4 +17,5 @@ public class MedicoDto {
     private Integer documento;
     private EspecialidadEnum especialidad;
     private DireccionDto direccion;
+  
 }

@@ -21,5 +21,5 @@ public class PacienteDto {
     private Integer numeroTelefono;
     private String email;
     private DireccionDto direccion;
-
+    //private ERole eRole;
 }

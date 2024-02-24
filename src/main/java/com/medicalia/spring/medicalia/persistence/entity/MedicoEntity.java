@@ -1,5 +1,6 @@
 package com.medicalia.spring.medicalia.persistence.entity;
 
+import com.medicalia.spring.medicalia.model.dto.ERole;
 import com.medicalia.spring.medicalia.model.dto.EspecialidadEnum;
 
 import jakarta.persistence.Entity;
@@ -26,14 +27,16 @@ public class MedicoEntity {
 
     private String nombre;
 
-    private String email;
-
     private Integer documento;
-    
+
     @Enumerated(EnumType.STRING)
     private EspecialidadEnum especialidad;
     
     @OneToOne
     @JoinColumn(name = "direccion_id", insertable = false, updatable = false)
     private DireccionEntity direccion;
+
+    @OneToOne
+    @JoinColumn(name="usuario_id", insertable = false, updatable = false)
+    private UsuarioEntity usuario;
 }
