@@ -38,7 +38,11 @@ public class PacienteEntity {
 
     @OneToOne
     @JoinColumn(name = "direccion_id", insertable = false, updatable = false)
-    private DireccionDto direccion;
+    private DireccionEntity direccion;
+
+    @OneToOne
+    @JoinColumn(name="usuario_id", insertable = false, updatable = false)
+    private UsuarioEntity usuario;
 
 
 }
