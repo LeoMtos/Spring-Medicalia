@@ -19,7 +19,6 @@ public class PacienteDto {
     private LocalDate fechaNacimiento;
     private String genero;
     private Integer numeroTelefono;
-    private String email;
     private DireccionDto direccion;
-    //private ERole eRole;
+    
 }

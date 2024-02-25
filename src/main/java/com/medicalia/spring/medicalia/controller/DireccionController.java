@@ -7,6 +7,7 @@ import com.medicalia.spring.medicalia.model.dto.DireccionDto;
 import com.medicalia.spring.medicalia.model.service.IDireccionService;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/direcciones")
 public class DireccionController {

@@ -1,6 +1,5 @@
 package com.medicalia.spring.medicalia.persistence.entity;
 
-import com.medicalia.spring.medicalia.model.dto.ERole;
 import com.medicalia.spring.medicalia.model.dto.EspecialidadEnum;
 
 import jakarta.persistence.Entity;

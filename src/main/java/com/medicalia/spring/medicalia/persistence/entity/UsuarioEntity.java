@@ -9,11 +9,17 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+
 @Entity
 @Table(name="usuario")
 public class UsuarioEntity {
@@ -29,7 +35,9 @@ public class UsuarioEntity {
     private String contrasenia;
     
     @Enumerated(EnumType.STRING)
-    private ERole rol;
+    private ERole role;
 
-    
+    @OneToOne(mappedBy ="usuario")
+    private MedicoEntity medicoEntity;
+
 }
