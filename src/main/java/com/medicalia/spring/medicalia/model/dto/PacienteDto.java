@@ -20,5 +20,6 @@ public class PacienteDto {
     private String genero;
     private Integer numeroTelefono;
     private DireccionDto direccion;
+    private UsuarioDto usuario;
     
 }

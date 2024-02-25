@@ -2,6 +2,7 @@ package com.medicalia.spring.medicalia.persistence.entity;
 
 import com.medicalia.spring.medicalia.model.dto.EspecialidadEnum;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -31,11 +32,11 @@ public class MedicoEntity {
     @Enumerated(EnumType.STRING)
     private EspecialidadEnum especialidad;
     
-    @OneToOne
-    @JoinColumn(name = "direccion_id", insertable = false, updatable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "direccion_id")
     private DireccionEntity direccion;
 
     @OneToOne
-    @JoinColumn(name="usuario_id", insertable = false, updatable = false)
+    @JoinColumn(name="usuario_id")
     private UsuarioEntity usuario;
 }

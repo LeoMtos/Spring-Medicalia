@@ -39,7 +39,6 @@ public class MedicoService implements IMedicoService{
         if (medicoDto2.isEmpty()) {
             return Optional.empty();
         }
-        medicoDto.setEmail(medicoDto.getEmail()== null ? medicoDto2.get().getEmail() : medicoDto.getEmail());
         medicoDto.setNombre(medicoDto.getNombre()== null ? medicoDto2.get().getNombre() : medicoDto.getNombre());
         medicoDto.setDocumento(medicoDto.getDocumento()==null ? medicoDto2.get().getDocumento() : medicoDto.getDocumento());
         medicoDto.setEspecialidad(medicoDto.getEspecialidad() == null ? medicoDto2.get().getEspecialidad() : medicoDto.getEspecialidad());

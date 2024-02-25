@@ -11,10 +11,10 @@ import com.medicalia.spring.medicalia.persistence.entity.PacienteEntity;
 
 @Mapper(componentModel = "spring")
 public interface IPacienteMapper {
- 
+
     PacienteDto toPacienteDto(PacienteEntity pacienteEntity);
 
-    @Mapping(target = "direccion", ignore = true)
+    @Mapping(target = "usuario", ignore = true)
     PacienteEntity toPacienteEntity(PacienteDto pacienteDto);
 
     List<PacienteDto> toPacientesDto(List<PacienteEntity> pacieteEntityList);

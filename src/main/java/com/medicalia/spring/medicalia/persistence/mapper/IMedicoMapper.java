@@ -13,7 +13,7 @@ public interface IMedicoMapper {
 
     MedicoDto toMedicoDto(MedicoEntity medicoEntity);
 
-    @Mapping(target = "direccion", ignore = true)
+    @Mapping(target = "usuario", ignore = true)
     MedicoEntity toMedicoEntity(MedicoDto medicoDto);
 
     List<MedicoDto> toMedicosDto(List<MedicoEntity> medicosEntityList);

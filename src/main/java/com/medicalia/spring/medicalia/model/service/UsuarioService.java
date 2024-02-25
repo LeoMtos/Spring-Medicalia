@@ -3,11 +3,11 @@ package com.medicalia.spring.medicalia.model.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
 import com.medicalia.spring.medicalia.model.repository.IUsuarioRepository;
+
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class UsuarioService implements IUsuarioService{
     
     private final IUsuarioRepository iUsuarioRepository;
+
 
 
     @Override

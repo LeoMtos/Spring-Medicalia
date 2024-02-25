@@ -2,6 +2,7 @@ package com.medicalia.spring.medicalia.persistence.entity;
 
 import com.medicalia.spring.medicalia.model.dto.ERole;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -37,7 +38,10 @@ public class UsuarioEntity {
     @Enumerated(EnumType.STRING)
     private ERole role;
 
-    @OneToOne(mappedBy ="usuario")
+    @OneToOne(mappedBy ="usuario", cascade = CascadeType.ALL)
     private MedicoEntity medicoEntity;
+
+    @OneToOne(mappedBy ="usuario", cascade = CascadeType.ALL)
+    private PacienteEntity pacienteEntity;
 
 }

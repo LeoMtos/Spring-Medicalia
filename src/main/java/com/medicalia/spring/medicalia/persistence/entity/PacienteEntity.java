@@ -2,8 +2,7 @@ package com.medicalia.spring.medicalia.persistence.entity;
 
 import java.time.LocalDate;
 
-import com.medicalia.spring.medicalia.model.dto.DireccionDto;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,12 +35,12 @@ public class PacienteEntity {
     @Column(name="telefono")
     private Integer numeroTelefono;
 
-    @OneToOne
-    @JoinColumn(name = "direccion_id", insertable = false, updatable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "direccion_id", updatable = false)
     private DireccionEntity direccion;
 
     @OneToOne
-    @JoinColumn(name="usuario_id", insertable = false, updatable = false)
+    @JoinColumn(name="usuario_id",updatable = false)
     private UsuarioEntity usuario;
 
 

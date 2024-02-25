@@ -13,9 +13,9 @@ public class MedicoDto {
 
     private Long id;
     private String nombre;
-    private String email;
     private Integer documento;
     private EspecialidadEnum especialidad;
     private DireccionDto direccion;
+    private UsuarioDto usuario;
   
 }
