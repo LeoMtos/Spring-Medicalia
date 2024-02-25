@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.medicalia.spring.medicalia.model.dto.MedicoDto;
+import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
 import com.medicalia.spring.medicalia.model.repository.IMedicoRepository;
+import com.medicalia.spring.medicalia.model.repository.IUsuarioRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class MedicoService implements IMedicoService{
 
     private final IMedicoRepository iMedicoRepository;
+    private final IUsuarioRepository iUsuarioRepository;
 
     @Override
     public List<MedicoDto> getAll() {
@@ -27,7 +30,16 @@ public class MedicoService implements IMedicoService{
     }
 
     @Override
-    public MedicoDto save(MedicoDto medicoDto) {
+    public MedicoDto save(MedicoDto medicoDto, Long id) {
+      
+        Optional<UsuarioDto> usuarioDto = iUsuarioRepository.findById(id);
+        if(usuarioDto.isPresent()){
+        medicoDto.setUsuario(usuarioDto.get());
+        }
+        else{
+            throw new RuntimeException("Usuario no encontrado");
+        }
+
         return iMedicoRepository.save(medicoDto);
     }
 

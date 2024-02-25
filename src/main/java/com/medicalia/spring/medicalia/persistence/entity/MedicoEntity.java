@@ -33,10 +33,10 @@ public class MedicoEntity {
     private EspecialidadEnum especialidad;
     
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "direccion_id")
+    @JoinColumn(name = "direccion_id", insertable = false, updatable = false)
     private DireccionEntity direccion;
 
     @OneToOne
-    @JoinColumn(name="usuario_id")
+    @JoinColumn(name="usuario_id", updatable = false)
     private UsuarioEntity usuario;
 }

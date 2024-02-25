@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.medicalia.spring.medicalia.model.dto.DireccionDto;
 import com.medicalia.spring.medicalia.model.service.IDireccionService;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

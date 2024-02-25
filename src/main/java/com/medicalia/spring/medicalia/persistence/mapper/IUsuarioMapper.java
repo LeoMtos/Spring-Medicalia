@@ -3,7 +3,6 @@ package com.medicalia.spring.medicalia.persistence.mapper;
 import java.util.List;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
 import com.medicalia.spring.medicalia.persistence.entity.UsuarioEntity;
@@ -13,7 +12,6 @@ public interface IUsuarioMapper {
 
     UsuarioDto toUsuarioDto(UsuarioEntity usuarioEntity);
 
-    @Mapping(target = "medicoEntity", ignore = true)
     UsuarioEntity toUsuarioEntity(UsuarioDto usuarioDto);
 
     List<UsuarioDto> toUsuariosDto(List<UsuarioEntity> usuariosEntityList);

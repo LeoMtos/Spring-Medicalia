@@ -9,7 +9,7 @@ public interface IMedicoService {
 
 List<MedicoDto> getAll();
 Optional<MedicoDto> findById(Long id);
-MedicoDto save(MedicoDto medicoDto);
+MedicoDto save(MedicoDto medicoDto, Long id);
 Optional<MedicoDto> update(MedicoDto medicoDto);
 boolean delete(Long id);
 

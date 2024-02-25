@@ -16,7 +16,6 @@ public class UsuarioDto {
     private String email;
     private String contrasenia;
     private ERole role;
-    private PacienteDto pacienteDto;
-    private MedicoDto medicoDto;
+    
 
 }

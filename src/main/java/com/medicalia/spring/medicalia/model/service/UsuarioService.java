@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
 import com.medicalia.spring.medicalia.model.repository.IUsuarioRepository;
 
-
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -17,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 public class UsuarioService implements IUsuarioService{
     
     private final IUsuarioRepository iUsuarioRepository;
-
 
 
     @Override
@@ -39,7 +37,7 @@ public class UsuarioService implements IUsuarioService{
 
     @Override
     public UsuarioDto save(UsuarioDto usuarioDto) {
-        return iUsuarioRepository.save(usuarioDto);
+    return iUsuarioRepository.save(usuarioDto);
     }
 
     @Override
