@@ -10,5 +10,6 @@ public interface IDireccionService {
 List<DireccionDto> getAll();
 Optional<DireccionDto> findById(Long id);
 Optional<DireccionDto> update(DireccionDto DireccionDto, Long id);
+DireccionDto save(DireccionDto direccionDto, Long Id);
 
 }

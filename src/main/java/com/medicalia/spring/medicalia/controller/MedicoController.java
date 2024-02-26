@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-
-
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/medicos")

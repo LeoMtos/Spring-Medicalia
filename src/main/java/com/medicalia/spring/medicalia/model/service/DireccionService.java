@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class DireccionService implements IDireccionService {
 
     private final IDireccionRepository iDireccionRepository;
+        
 
     @Override
     public List<DireccionDto> getAll() {
@@ -34,6 +35,14 @@ public class DireccionService implements IDireccionService {
         direccionDto.setId(id);
         return Optional.of(iDireccionRepository.save(direccionDto));
     }
+
+    @Override
+    public DireccionDto save(DireccionDto direccionDto, Long id) {
+
+        return iDireccionRepository.save(direccionDto);
+    }
+
+    
 
 
 }

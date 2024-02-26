@@ -12,7 +12,7 @@ import com.medicalia.spring.medicalia.persistence.entity.PacienteEntity;
 public interface IPacienteMapper {
 
     PacienteDto toPacienteDto(PacienteEntity pacienteEntity);
-
+    
     PacienteEntity toPacienteEntity(PacienteDto pacienteDto);
 
     List<PacienteDto> toPacientesDto(List<PacienteEntity> pacieteEntityList);

@@ -32,8 +32,8 @@ public class MedicoEntity {
     @Enumerated(EnumType.STRING)
     private EspecialidadEnum especialidad;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "direccion_id", insertable = false, updatable = false)
+    @OneToOne
+    @JoinColumn(name = "direccion_id", updatable = false)
     private DireccionEntity direccion;
 
     @OneToOne

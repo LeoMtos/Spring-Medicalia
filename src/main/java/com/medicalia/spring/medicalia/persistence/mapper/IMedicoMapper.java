@@ -10,6 +10,7 @@ import com.medicalia.spring.medicalia.persistence.entity.MedicoEntity;
 @Mapper(componentModel = "spring")
 public interface IMedicoMapper {
 
+
     MedicoDto toMedicoDto(MedicoEntity medicoEntity);
 
     MedicoEntity toMedicoEntity(MedicoDto medicoDto);

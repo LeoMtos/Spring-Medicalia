@@ -35,8 +35,8 @@ public class PacienteEntity {
     @Column(name="telefono")
     private Integer numeroTelefono;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "direccion_id", updatable = false)
+    @OneToOne
+    @JoinColumn(name = "direccion_id")
     private DireccionEntity direccion;
 
     @OneToOne
