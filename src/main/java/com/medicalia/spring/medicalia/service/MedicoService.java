@@ -1,4 +1,4 @@
-package com.medicalia.spring.medicalia.model.service;
+package com.medicalia.spring.medicalia.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.medicalia.spring.medicalia.model.dto.MedicoDto;
+import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
 import com.medicalia.spring.medicalia.model.repository.IMedicoRepository;
+import com.medicalia.spring.medicalia.model.repository.IUsuarioRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class MedicoService implements IMedicoService{
 
     private final IMedicoRepository iMedicoRepository;
+    private final IUsuarioRepository iUsuarioRepository;
 
     @Override
     public List<MedicoDto> getAll() {
@@ -27,7 +30,16 @@ public class MedicoService implements IMedicoService{
     }
 
     @Override
-    public MedicoDto save(MedicoDto medicoDto) {
+    public MedicoDto save(MedicoDto medicoDto, Long id) {
+      
+        Optional<UsuarioDto> usuarioDto = iUsuarioRepository.findById(id);
+        if(usuarioDto.isPresent()){
+        medicoDto.setUsuario(usuarioDto.get());
+        }
+        else{
+            throw new RuntimeException("Usuario no encontrado");
+        }
+
         return iMedicoRepository.save(medicoDto);
     }
 
@@ -39,7 +51,6 @@ public class MedicoService implements IMedicoService{
         if (medicoDto2.isEmpty()) {
             return Optional.empty();
         }
-        medicoDto.setEmail(medicoDto.getEmail()== null ? medicoDto2.get().getEmail() : medicoDto.getEmail());
         medicoDto.setNombre(medicoDto.getNombre()== null ? medicoDto2.get().getNombre() : medicoDto.getNombre());
         medicoDto.setDocumento(medicoDto.getDocumento()==null ? medicoDto2.get().getDocumento() : medicoDto.getDocumento());
         medicoDto.setEspecialidad(medicoDto.getEspecialidad() == null ? medicoDto2.get().getEspecialidad() : medicoDto.getEspecialidad());

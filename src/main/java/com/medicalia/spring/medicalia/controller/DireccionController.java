@@ -4,9 +4,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.medicalia.spring.medicalia.model.dto.DireccionDto;
-import com.medicalia.spring.medicalia.model.service.IDireccionService;
+import com.medicalia.spring.medicalia.service.IDireccionService;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 
 
-@AllArgsConstructor
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/direcciones")
 public class DireccionController {
@@ -29,7 +31,6 @@ public class DireccionController {
 
 @GetMapping()
 public ResponseEntity<List<DireccionDto>> getAll(){
-
     return new ResponseEntity<>(iDireccionService.getAll(),HttpStatus.OK);
 }
 
@@ -37,6 +38,12 @@ public ResponseEntity<List<DireccionDto>> getAll(){
 public ResponseEntity<DireccionDto> findById(@PathVariable Long id) {
     return ResponseEntity.of(iDireccionService.findById(id));
 }
+
+@PostMapping("/{id}")
+public ResponseEntity<DireccionDto> save(@RequestBody DireccionDto direccionDto, @PathVariable Long id) {
+    return new ResponseEntity<>(iDireccionService.save(direccionDto, id),HttpStatus.ACCEPTED);
+}
+
 
 @PutMapping("/{id}")
 public ResponseEntity<DireccionDto> update(@RequestBody DireccionDto direccionDto, @PathVariable Long id) {

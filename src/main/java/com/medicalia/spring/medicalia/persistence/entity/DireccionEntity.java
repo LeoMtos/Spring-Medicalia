@@ -27,4 +27,7 @@ public class DireccionEntity {
     @OneToOne(mappedBy ="direccion")
     private MedicoEntity medicoEntity; 
 
+    @OneToOne(mappedBy ="direccion")
+    private PacienteEntity pacienteEntity; 
+
 }

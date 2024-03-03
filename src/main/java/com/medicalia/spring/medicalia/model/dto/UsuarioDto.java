@@ -1,6 +1,5 @@
 package com.medicalia.spring.medicalia.model.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,13 +9,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class MedicoDto {
+public class UsuarioDto {
 
     private Long id;
-    private String nombre;
-    private Integer documento;
-    private EspecialidadEnum especialidad;
-    private DireccionDto direccion;
-    private UsuarioDto usuario;
-  
+    private String nombreUsuario;
+    private String email;
+    private String contrasenia;
+    private ERole role;
+    
+
 }

@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.medicalia.spring.medicalia.model.dto.MedicoDto;
-import com.medicalia.spring.medicalia.model.service.IMedicoService;
+import com.medicalia.spring.medicalia.service.IMedicoService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-
 
 
 @RequiredArgsConstructor
@@ -38,10 +36,10 @@ public class MedicoController {
        return ResponseEntity.of(iMedicoService.findById(id));
     }
 
-    @PostMapping()
-    public ResponseEntity<MedicoDto> save(@RequestBody MedicoDto medicoDto) {
+    @PostMapping("/{id}")
+    public ResponseEntity<MedicoDto> save(@RequestBody MedicoDto medicoDto, @PathVariable Long id) {
         try {
-            return new ResponseEntity<>(iMedicoService.save(medicoDto),HttpStatus.OK);    
+            return new ResponseEntity<>(iMedicoService.save(medicoDto, id),HttpStatus.OK);    
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }    
