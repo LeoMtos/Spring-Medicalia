@@ -1,14 +1,12 @@
-package com.medicalia.spring.medicalia.model.service;
+package com.medicalia.spring.medicalia.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.medicalia.spring.medicalia.model.dto.MedicoDto;
 import com.medicalia.spring.medicalia.model.dto.PacienteDto;
 import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
-import com.medicalia.spring.medicalia.model.repository.IMedicoRepository;
 import com.medicalia.spring.medicalia.model.repository.IPacienteRepository;
 import com.medicalia.spring.medicalia.model.repository.IUsuarioRepository;
 

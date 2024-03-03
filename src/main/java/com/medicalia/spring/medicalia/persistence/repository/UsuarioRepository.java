@@ -43,6 +43,11 @@ public class UsuarioRepository implements IUsuarioRepository{
     public Optional<UsuarioDto> findByEmail(String email) {
        return iUsuarioCrudRepository.findByEmail(email).map(iUsuarioMapper::toUsuarioDto);
     }
+
+    @Override
+    public Optional<UsuarioDto> findByNombreUsuario(String userName){
+        return iUsuarioCrudRepository.findByNombreUsuario(userName).map(iUsuarioMapper::toUsuarioDto);
+    }
     
 
 }

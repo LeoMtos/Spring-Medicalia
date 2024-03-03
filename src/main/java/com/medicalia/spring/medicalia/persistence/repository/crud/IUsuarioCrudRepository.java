@@ -9,4 +9,5 @@ import com.medicalia.spring.medicalia.persistence.entity.UsuarioEntity;
 public interface IUsuarioCrudRepository extends JpaRepository<UsuarioEntity, Long>{
 
     Optional<UsuarioEntity> findByEmail(String email);
+    Optional<UsuarioEntity> findByNombreUsuario(String username);
 }

@@ -1,4 +1,4 @@
-package com.medicalia.spring.medicalia.model.service;
+package com.medicalia.spring.medicalia.service;
 
 import java.util.List;
 import java.util.Optional;

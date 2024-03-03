@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.medicalia.spring.medicalia.model.dto.MedicoDto;
-import com.medicalia.spring.medicalia.model.service.IMedicoService;
+import com.medicalia.spring.medicalia.service.IMedicoService;
 
 import lombok.RequiredArgsConstructor;
 

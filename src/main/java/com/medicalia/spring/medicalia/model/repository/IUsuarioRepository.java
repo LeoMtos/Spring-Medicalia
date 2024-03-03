@@ -13,5 +13,6 @@ public interface IUsuarioRepository {
     UsuarioDto save(UsuarioDto usuarioDto);
     void delete(Long id);
     Optional<UsuarioDto> findByEmail(String email);
+    Optional<UsuarioDto> findByNombreUsuario(String userName);
 
 }
