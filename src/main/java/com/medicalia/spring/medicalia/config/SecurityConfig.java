@@ -29,24 +29,24 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, AuthenticationManager authenticationManager) throws Exception {
-
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtUtils);
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
-        //jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
-        return httpSecurity
-                .csrf(config -> config.disable())
-                .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/register/**").permitAll();
-                    auth.anyRequest().authenticated();
-                })
-                .sessionManagement(session -> {
-                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-                })
-                .addFilter(jwtAuthenticationFilter)
-                .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
-    }
+    return httpSecurity
+            .csrf(config -> config.disable())
+            .authorizeHttpRequests(auth -> {
+                auth
+                    .requestMatchers("/register/**").permitAll()
+                    .requestMatchers("/medicos/**").hasRole("MEDICO") 
+                    .requestMatchers("/direcciones/**").hasAnyRole("MEDICO", "PACIENTE")
+                    .anyRequest().authenticated();
+            })
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .addFilter(jwtAuthenticationFilter)
+            .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
+            .build();
+}
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){

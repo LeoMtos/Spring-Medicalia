@@ -15,6 +15,7 @@ public interface IUsuarioMapper {
 
     @Mapping(target = "medicoEntity", ignore = true)
     @Mapping(target = "pacienteEntity", ignore = true)
+    @Mapping(target = "direccioneEntity", ignore = true)
     UsuarioEntity toUsuarioEntity(UsuarioDto usuarioDto);
 
     List<UsuarioDto> toUsuariosDto(List<UsuarioEntity> usuariosEntityList);

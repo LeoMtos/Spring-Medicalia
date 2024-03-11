@@ -1,4 +1,4 @@
-package com.medicalia.spring.medicalia.service;
+package com.medicalia.spring.medicalia.service.usercase;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +9,8 @@ public interface IMedicoService {
 
 List<MedicoDto> getAll();
 Optional<MedicoDto> findById(Long id);
-MedicoDto save(MedicoDto medicoDto, Long id);
+Optional<MedicoDto> findByNombre(String nombre);
+MedicoDto save(MedicoDto medicoDto);
 Optional<MedicoDto> update(MedicoDto medicoDto);
 boolean delete(Long id);
 

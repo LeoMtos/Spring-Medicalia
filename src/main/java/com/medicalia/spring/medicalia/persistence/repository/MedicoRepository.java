@@ -47,4 +47,9 @@ public class MedicoRepository implements IMedicoRepository {
         iMedicoCrudRepository.deleteById(id);
     }
 
+    @Override
+    public Optional<MedicoDto> findByNombre(String name) {
+       return iMedicoCrudRepository.findByNombre(name).map(iMedicoMapper::toMedicoDto);
+    }
+
 }

@@ -43,4 +43,8 @@ public class UsuarioEntity {
     @OneToOne(mappedBy ="usuario")
     private PacienteEntity pacienteEntity;
 
+    @OneToOne(mappedBy ="usuario")
+    private DireccionEntity direccioneEntity;
+
+
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.medicalia.spring.medicalia.model.dto.DireccionDto;
 import com.medicalia.spring.medicalia.model.repository.IDireccionRepository;
+import com.medicalia.spring.medicalia.service.usercase.IDireccionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,6 +30,7 @@ public class DireccionService implements IDireccionService {
 
     @Override
     public Optional<DireccionDto> update(DireccionDto direccionDto, Long id) {
+        
         if (iDireccionRepository.findById(id).isEmpty()) {
             return Optional.empty();
         }
@@ -37,9 +39,14 @@ public class DireccionService implements IDireccionService {
     }
 
     @Override
-    public DireccionDto save(DireccionDto direccionDto, Long id) {
+    public DireccionDto save(DireccionDto direccionDto) {
 
         return iDireccionRepository.save(direccionDto);
+    }
+
+    @Override
+    public Optional<DireccionDto> findDireccionByUserId(Long id) {
+       return iDireccionRepository.findDireccionByUserId(id);
     }
 
     

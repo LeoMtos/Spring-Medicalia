@@ -10,4 +10,6 @@ public interface IDireccionRepository {
     List<DireccionDto> getAll();
     Optional<DireccionDto> findById(Long id);
     DireccionDto save(DireccionDto medicoDto);
+    Optional<DireccionDto>findDireccionByUserId(Long id);
+
 }

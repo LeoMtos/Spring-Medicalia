@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
 import com.medicalia.spring.medicalia.model.repository.IUsuarioRepository;
+import com.medicalia.spring.medicalia.service.usercase.IUsuarioService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -60,5 +61,12 @@ public class UsuarioService implements IUsuarioService{
         }
         return false;
     }
+
+    @Override
+    public Optional<UsuarioDto> findByName(String name) {
+       return iUsuarioRepository.findByNombreUsuario(name);
+    }
+
+    
 
 }

@@ -11,6 +11,6 @@ public interface IMedicoRepository {
     Optional<MedicoDto> findById(Long id);
     MedicoDto save(MedicoDto medicoDto);
     void delete(Long id);
-    
+    Optional<MedicoDto> findByNombre(String name);
 
 }

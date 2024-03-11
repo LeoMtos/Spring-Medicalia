@@ -37,5 +37,10 @@ public class DireccionRepository implements IDireccionRepository {
         return iDireccionMapper.toDireccionDto(iDireccionCrudRepository.save(direccion));
     }
 
+    @Override
+    public Optional<DireccionDto> findDireccionByUserId(Long id) {
+       return iDireccionCrudRepository.findDireccionByUserId(id).map(iDireccionMapper::toDireccionDto);
+    }
+
 
 }

@@ -1,4 +1,4 @@
-package com.medicalia.spring.medicalia.service;
+package com.medicalia.spring.medicalia.service.usercase;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,5 +13,6 @@ UsuarioDto save(UsuarioDto usuarioDto);
 Optional<UsuarioDto> update(UsuarioDto usuarioDto, Long id);
 boolean delete(Long id);
 Optional<UsuarioDto> findByEmail(String email);
+Optional<UsuarioDto> findByName(String name);
 
 }

@@ -35,9 +35,9 @@ public class PacienteEntity {
     @Column(name="telefono")
     private Integer numeroTelefono;
 
-    @OneToOne
-    @JoinColumn(name = "direccion_id")
-    private DireccionEntity direccion;
+    // @OneToOne
+    // @JoinColumn(name = "direccion_id")
+    // private DireccionEntity direccion;
 
     @OneToOne
     @JoinColumn(name="usuario_id",updatable = false)

@@ -32,9 +32,9 @@ public class MedicoEntity {
     @Enumerated(EnumType.STRING)
     private EspecialidadEnum especialidad;
     
-    @OneToOne
-    @JoinColumn(name = "direccion_id", updatable = false)
-    private DireccionEntity direccion;
+    // @OneToOne
+    // @JoinColumn(name = "direccion_id", updatable = false)
+    // private DireccionEntity direccion;
 
     @OneToOne
     @JoinColumn(name="usuario_id", updatable = false)

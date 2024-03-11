@@ -9,6 +9,7 @@ import com.medicalia.spring.medicalia.model.dto.PacienteDto;
 import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
 import com.medicalia.spring.medicalia.model.repository.IPacienteRepository;
 import com.medicalia.spring.medicalia.model.repository.IUsuarioRepository;
+import com.medicalia.spring.medicalia.service.usercase.IPacienteService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,15 +31,15 @@ public class PacienteService implements IPacienteService{
     }
 
     @Override
-    public PacienteDto save(PacienteDto pacienteDto, Long id) {
+    public PacienteDto save(PacienteDto pacienteDto) {
       
-        Optional<UsuarioDto> usuarioDto = iUsuarioRepository.findById(id);
-        if(usuarioDto.isPresent()){
-        pacienteDto.setUsuario(usuarioDto.get());
-        }
-        else{
-            throw new RuntimeException("Usuario no encontrado");
-        }
+        // Optional<UsuarioDto> usuarioDto = iUsuarioRepository.findById(id);
+        // if(usuarioDto.isPresent()){
+        // pacienteDto.setUsuario(usuarioDto.get());
+        // }
+        // else{
+        //     throw new RuntimeException("Usuario no encontrado");
+        // }
 
         return iPacienteRepository.save(pacienteDto);
     }
