@@ -9,8 +9,9 @@ public interface IDireccionService {
 
 List<DireccionDto> getAll();
 Optional<DireccionDto> findById(Long id);
-Optional<DireccionDto> update(DireccionDto DireccionDto, Long id);
+Optional<DireccionDto> update(DireccionDto DireccionDto, String usuarioDto);
 DireccionDto save(DireccionDto direccionDto);
 Optional<DireccionDto>findDireccionByUserId(Long id);
+
 
 }

@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.medicalia.spring.medicalia.model.dto.DireccionDto;
+import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
 import com.medicalia.spring.medicalia.model.repository.IDireccionRepository;
 import com.medicalia.spring.medicalia.service.usercase.IDireccionService;
+import com.medicalia.spring.medicalia.service.usercase.IUsuarioService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class DireccionService implements IDireccionService {
 
     private final IDireccionRepository iDireccionRepository;
-        
+    private final IUsuarioService iUsuarioService;
 
     @Override
     public List<DireccionDto> getAll() {
@@ -29,13 +31,12 @@ public class DireccionService implements IDireccionService {
     }
 
     @Override
-    public Optional<DireccionDto> update(DireccionDto direccionDto, Long id) {
-        
-        if (iDireccionRepository.findById(id).isEmpty()) {
-            return Optional.empty();
+    public Optional<DireccionDto> update(DireccionDto direccionDto, String usuarioDto) {
+        Optional<UsuarioDto> usuOptional=iUsuarioService.findByName(usuarioDto);
+        if(usuOptional.isPresent()){
+            
         }
-        direccionDto.setId(id);
-        return Optional.of(iDireccionRepository.save(direccionDto));
+        return null;
     }
 
     @Override

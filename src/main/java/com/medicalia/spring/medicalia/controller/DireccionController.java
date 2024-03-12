@@ -31,27 +31,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RestController
 @RequestMapping("/direcciones")
 public class DireccionController {
-
     private final IDireccionService iDireccionService;
-    private final IMedicoService iMedicoService;
-    private final IUsuarioService iUsuarioService;
-    private final IUsuarioMapper iUsuarioMapper;
 
 @GetMapping("/")
 public ResponseEntity<List<DireccionDto>> getAll(){
  return ResponseEntity.ok(iDireccionService.getAll());
-    //return new ResponseEntity<>(iDireccionService.getAll(),HttpStatus.OK);
 }
 
 @GetMapping("/{id}")
 public ResponseEntity<DireccionDto> findById(@PathVariable Long id) {
     return ResponseEntity.of(iDireccionService.findById(id));
 }
-
-// @PostMapping("/{id}")
-// public ResponseEntity<DireccionDto> save(@RequestBody DireccionDto direccionDto) {
-//     return new ResponseEntity<>(iDireccionService.save(direccionDto),HttpStatus.ACCEPTED);
-// }
 
 @PostMapping("/")
 public ResponseEntity<DireccionDto> save(@RequestBody DireccionDto direccionDto ){
@@ -63,30 +53,9 @@ public ResponseEntity<DireccionDto> update(@RequestBody DireccionDto direccionDt
     
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     if (authentication != null && authentication.isAuthenticated()) {
-        // Obtener el nombre de usuario del usuario autenticado
-        String username = authentication.getName();
-        Optional<UsuarioDto> usuarioDto = iUsuarioService.findByName(username);
-        
-         if (usuarioDto != null) {
-            Optional<DireccionDto> direccionUsuario = iDireccionService.findDireccionByUserId(usuarioDto.get().getId());
-            if (direccionUsuario.isPresent()){
-                return ResponseEntity.of(iDireccionService.update(direccionDto, direccionUsuario.get().getId()));
-            }
-            else {
-                // El usuario no tiene permiso para actualizar esta dirección
-                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-            }
-         }
-         else{
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-         }
-        //System.out.println(username);
+        return ResponseEntity.ok(iDireccionService.update(direccionDto,authentication.getName()).get());
     }
-    else{
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-    }
-
-   //return ResponseEntity.of(iDireccionService.update(direccionDto,));
 }
 
 }
