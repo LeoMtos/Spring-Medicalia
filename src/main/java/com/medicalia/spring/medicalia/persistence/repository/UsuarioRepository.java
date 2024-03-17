@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
+import com.medicalia.spring.medicalia.model.dto.UsuarioRequest;
 import com.medicalia.spring.medicalia.model.repository.IUsuarioRepository;
-import com.medicalia.spring.medicalia.persistence.mapper.IUsuarioMapper;
+import com.medicalia.spring.medicalia.persistence.mapper.IUsuarioRequestMapper;
 import com.medicalia.spring.medicalia.persistence.repository.crud.IUsuarioCrudRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -17,20 +17,20 @@ import lombok.RequiredArgsConstructor;
 public class UsuarioRepository implements IUsuarioRepository{
 
     private final IUsuarioCrudRepository iUsuarioCrudRepository;
-    private final IUsuarioMapper iUsuarioMapper;
+    private final IUsuarioRequestMapper iUsuarioMapper;
 
     @Override
-    public List<UsuarioDto> getAll() {
+    public List<UsuarioRequest> getAll() {
        return iUsuarioMapper.toUsuariosDto(iUsuarioCrudRepository.findAll());
     }
 
     @Override
-    public Optional<UsuarioDto> findById(Long id) {
+    public Optional<UsuarioRequest> findById(Long id) {
         return iUsuarioCrudRepository.findById(id).map(iUsuarioMapper::toUsuarioDto);
     }
 
     @Override
-    public UsuarioDto save(UsuarioDto usuarioDto) {
+    public UsuarioRequest save(UsuarioRequest usuarioDto) {
         return  iUsuarioMapper.toUsuarioDto(iUsuarioCrudRepository.save(iUsuarioMapper.toUsuarioEntity(usuarioDto)));
     }
 
@@ -40,12 +40,12 @@ public class UsuarioRepository implements IUsuarioRepository{
     }
 
     @Override
-    public Optional<UsuarioDto> findByEmail(String email) {
+    public Optional<UsuarioRequest> findByEmail(String email) {
        return iUsuarioCrudRepository.findByEmail(email).map(iUsuarioMapper::toUsuarioDto);
     }
 
     @Override
-    public Optional<UsuarioDto> findByNombreUsuario(String userName){
+    public Optional<UsuarioRequest> findByNombreUsuario(String userName){
         return iUsuarioCrudRepository.findByNombreUsuario(userName).map(iUsuarioMapper::toUsuarioDto);
     }
     

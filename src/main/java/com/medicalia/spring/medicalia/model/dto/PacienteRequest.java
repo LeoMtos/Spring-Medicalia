@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class PacienteDto {
+public class PacienteRequest {
     
     private Long id;
     private String nombre;
@@ -19,7 +19,7 @@ public class PacienteDto {
     private LocalDate fechaNacimiento;
     private String genero;
     private Integer numeroTelefono;
-    private DireccionDto direccion;
-    private UsuarioDto usuario;
+    //private DireccionDto direccion;
+    private UsuarioRequest usuario;
     
 }

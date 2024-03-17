@@ -5,8 +5,13 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.medicalia.spring.medicalia.model.dto.DireccionDto;
+import com.medicalia.spring.medicalia.exception.DireccionNotFoundException;
+import com.medicalia.spring.medicalia.exception.UsuarioNotFoundException;
+import com.medicalia.spring.medicalia.model.dto.DireccionRequest;
+import com.medicalia.spring.medicalia.model.dto.UsuarioRequest;
 import com.medicalia.spring.medicalia.model.repository.IDireccionRepository;
+import com.medicalia.spring.medicalia.service.usercase.IDireccionService;
+import com.medicalia.spring.medicalia.service.usercase.IUsuarioService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,31 +20,45 @@ import lombok.RequiredArgsConstructor;
 public class DireccionService implements IDireccionService {
 
     private final IDireccionRepository iDireccionRepository;
-        
+    private final IUsuarioService iUsuarioService;
 
     @Override
-    public List<DireccionDto> getAll() {
+    public List<DireccionRequest> getAll() {
         return iDireccionRepository.getAll();
     }
 
     @Override
-    public Optional<DireccionDto> findById(Long id) {
+    public Optional<DireccionRequest> findById(Long id) {
         return iDireccionRepository.findById(id);
     }
 
     @Override
-    public Optional<DireccionDto> update(DireccionDto direccionDto, Long id) {
-        if (iDireccionRepository.findById(id).isEmpty()) {
-            return Optional.empty();
+    public Optional<DireccionRequest> update(DireccionRequest direccionDto, String usuarioDto) {
+        Optional<UsuarioRequest> usuOptional=iUsuarioService.findByName(usuarioDto);
+
+        if(usuOptional.isPresent()){
+            Optional<DireccionRequest> direccOptional = iDireccionRepository.findDireccionByUserId(usuOptional.get().getId());
+            if(direccOptional.isPresent()){
+            return Optional.of(iDireccionRepository.save(direccOptional.get()));
+            }
+        
+                throw new DireccionNotFoundException();
         }
-        direccionDto.setId(id);
-        return Optional.of(iDireccionRepository.save(direccionDto));
+        else{
+            throw new UsuarioNotFoundException();
+        }
+        
     }
 
     @Override
-    public DireccionDto save(DireccionDto direccionDto, Long id) {
+    public DireccionRequest save(DireccionRequest direccionDto) {
 
         return iDireccionRepository.save(direccionDto);
+    }
+
+    @Override
+    public Optional<DireccionRequest> findDireccionByUserId(Long id) {
+       return iDireccionRepository.findDireccionByUserId(id);
     }
 
     

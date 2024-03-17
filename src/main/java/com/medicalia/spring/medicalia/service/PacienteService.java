@@ -5,10 +5,11 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.medicalia.spring.medicalia.model.dto.PacienteDto;
-import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
+import com.medicalia.spring.medicalia.model.dto.PacienteRequest;
+import com.medicalia.spring.medicalia.model.dto.UsuarioRequest;
 import com.medicalia.spring.medicalia.model.repository.IPacienteRepository;
 import com.medicalia.spring.medicalia.model.repository.IUsuarioRepository;
+import com.medicalia.spring.medicalia.service.usercase.IPacienteService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,32 +21,32 @@ public class PacienteService implements IPacienteService{
     private final IUsuarioRepository iUsuarioRepository;
 
     @Override
-    public List<PacienteDto> getAll() {
+    public List<PacienteRequest> getAll() {
         return iPacienteRepository.getAll();
     }
 
     @Override
-    public Optional<PacienteDto> findById(Long id) {
+    public Optional<PacienteRequest> findById(Long id) {
         return iPacienteRepository.findById(id);
     }
 
     @Override
-    public PacienteDto save(PacienteDto pacienteDto, Long id) {
+    public PacienteRequest save(PacienteRequest pacienteDto) {
       
-        Optional<UsuarioDto> usuarioDto = iUsuarioRepository.findById(id);
-        if(usuarioDto.isPresent()){
-        pacienteDto.setUsuario(usuarioDto.get());
-        }
-        else{
-            throw new RuntimeException("Usuario no encontrado");
-        }
+        // Optional<UsuarioDto> usuarioDto = iUsuarioRepository.findById(id);
+        // if(usuarioDto.isPresent()){
+        // pacienteDto.setUsuario(usuarioDto.get());
+        // }
+        // else{
+        //     throw new RuntimeException("Usuario no encontrado");
+        // }
 
         return iPacienteRepository.save(pacienteDto);
     }
 
     @Override
-    public Optional<PacienteDto> update(PacienteDto pacienteDto) {
-        Optional<PacienteDto> pacienteDto2 = iPacienteRepository.findById(pacienteDto.getId());
+    public Optional<PacienteRequest> update(PacienteRequest pacienteDto) {
+        Optional<PacienteRequest> pacienteDto2 = iPacienteRepository.findById(pacienteDto.getId());
 
 
         if (pacienteDto2.isEmpty()) {
