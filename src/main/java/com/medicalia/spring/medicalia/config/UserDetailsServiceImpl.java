@@ -10,8 +10,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
-import com.medicalia.spring.medicalia.model.repository.IUsuarioRepository;
+
+import com.medicalia.spring.medicalia.persistence.entity.UsuarioEntity;
+import com.medicalia.spring.medicalia.persistence.repository.crud.IUsuarioCrudRepository;
+
 import lombok.RequiredArgsConstructor;
 
 
@@ -20,21 +22,21 @@ import lombok.RequiredArgsConstructor;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 
-  private final IUsuarioRepository iUsuarioRepository;
+  private final IUsuarioCrudRepository iUsuarioCrudRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        UsuarioDto usuarioDto = iUsuarioRepository.findByNombreUsuario(username)
+        UsuarioEntity usuarioEntity = iUsuarioCrudRepository.findByNombreUsuario(username)
                 .orElseThrow(() -> new UsernameNotFoundException("El usuario " + username + " no existe."));
 
 
-        String roleName = usuarioDto.getRole().name();
+        String roleName = usuarioEntity.getRole().name();
         GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_".concat(roleName));
 
 
-        return new User(usuarioDto.getNombreUsuario(),
-                usuarioDto.getContrasenia(),
+        return new User(usuarioEntity.getNombreUsuario(),
+                usuarioEntity.getContrasenia(),
                 true,
                 true,
                 true,

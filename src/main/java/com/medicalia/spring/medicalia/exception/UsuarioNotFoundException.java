@@ -1,9 +1,9 @@
 package com.medicalia.spring.medicalia.exception;
 
-public class CustomerNotExistException extends RuntimeException {
+public class UsuarioNotFoundException extends RuntimeException {
 
 
-    public CustomerNotExistException() {
+    public UsuarioNotFoundException() {
         super("El usuario ingresado no existe.");
     }
 }

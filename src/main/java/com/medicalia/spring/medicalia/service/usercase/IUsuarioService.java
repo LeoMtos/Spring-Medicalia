@@ -3,16 +3,17 @@ package com.medicalia.spring.medicalia.service.usercase;
 import java.util.List;
 import java.util.Optional;
 
-import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
+import com.medicalia.spring.medicalia.model.dto.ERole;
+import com.medicalia.spring.medicalia.model.dto.UsuarioRequest;
 
 public interface IUsuarioService {
 
-List<UsuarioDto> getAll();
-Optional<UsuarioDto> findById(Long id);
-UsuarioDto save(UsuarioDto usuarioDto);
-Optional<UsuarioDto> update(UsuarioDto usuarioDto, Long id);
+List<UsuarioRequest> getAll();
+Optional<UsuarioRequest> findById(Long id);
+UsuarioRequest save(UsuarioRequest usuarioDto, ERole role);
+Optional<UsuarioRequest> update(UsuarioRequest usuarioDto, Long id);
 boolean delete(Long id);
-Optional<UsuarioDto> findByEmail(String email);
-Optional<UsuarioDto> findByName(String name);
+Optional<UsuarioRequest> findByEmail(String email);
+Optional<UsuarioRequest> findByName(String name);
 
 }

@@ -2,19 +2,12 @@ package com.medicalia.spring.medicalia.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.medicalia.spring.medicalia.model.dto.DireccionDto;
-import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
-import com.medicalia.spring.medicalia.persistence.mapper.IUsuarioMapper;
+import com.medicalia.spring.medicalia.model.dto.DireccionRequest;
 import com.medicalia.spring.medicalia.service.usercase.IDireccionService;
-import com.medicalia.spring.medicalia.service.usercase.IMedicoService;
-import com.medicalia.spring.medicalia.service.usercase.IUsuarioService;
 
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.Optional;
-
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,26 +27,27 @@ public class DireccionController {
     private final IDireccionService iDireccionService;
 
 @GetMapping("/")
-public ResponseEntity<List<DireccionDto>> getAll(){
+public ResponseEntity<List<DireccionRequest>> getAll(){
  return ResponseEntity.ok(iDireccionService.getAll());
 }
 
 @GetMapping("/{id}")
-public ResponseEntity<DireccionDto> findById(@PathVariable Long id) {
+public ResponseEntity<DireccionRequest> findById(@PathVariable Long id) {
     return ResponseEntity.of(iDireccionService.findById(id));
 }
 
 @PostMapping("/")
-public ResponseEntity<DireccionDto> save(@RequestBody DireccionDto direccionDto ){
+public ResponseEntity<DireccionRequest> save(@RequestBody DireccionRequest direccionDto ){
     return ResponseEntity.ok(iDireccionService.save(direccionDto));
 }
 
 @PutMapping("/")
-public ResponseEntity<DireccionDto> update(@RequestBody DireccionDto direccionDto) {
+public ResponseEntity<DireccionRequest> update(@RequestBody DireccionRequest direccionRequest) {
     
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     if (authentication != null && authentication.isAuthenticated()) {
-        return ResponseEntity.ok(iDireccionService.update(direccionDto,authentication.getName()).get());
+        //Enviando el usuario autenticado al service para obtener la direccion a editar.
+        return ResponseEntity.ok(iDireccionService.update(direccionRequest,authentication.getName()).get());
     }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 }

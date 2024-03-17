@@ -5,19 +5,19 @@ import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
+import com.medicalia.spring.medicalia.model.dto.UsuarioRequest;
 import com.medicalia.spring.medicalia.persistence.entity.UsuarioEntity;
 
 @Mapper(componentModel = "spring")
-public interface IUsuarioMapper {
+public interface IUsuarioRequestMapper {
 
-    UsuarioDto toUsuarioDto(UsuarioEntity usuarioEntity);
+    UsuarioRequest toUsuarioDto(UsuarioEntity usuarioEntity);
 
     @Mapping(target = "medicoEntity", ignore = true)
     @Mapping(target = "pacienteEntity", ignore = true)
     @Mapping(target = "direccioneEntity", ignore = true)
-    UsuarioEntity toUsuarioEntity(UsuarioDto usuarioDto);
+    UsuarioEntity toUsuarioEntity(UsuarioRequest usuarioDto);
 
-    List<UsuarioDto> toUsuariosDto(List<UsuarioEntity> usuariosEntityList);
+    List<UsuarioRequest> toUsuariosDto(List<UsuarioEntity> usuariosEntityList);
     
 }

@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.medicalia.spring.medicalia.model.dto.MedicoDto;
-
+import com.medicalia.spring.medicalia.model.dto.MedicoRequest;
+import com.medicalia.spring.medicalia.model.dto.MedicoResponse;
 import com.medicalia.spring.medicalia.model.repository.IMedicoRepository;
 import com.medicalia.spring.medicalia.service.usercase.IMedicoService;
 
@@ -20,32 +20,24 @@ public class MedicoService implements IMedicoService{
 
 
     @Override
-    public List<MedicoDto> getAll() {
+    public List<MedicoResponse> getAll() {
         return iMedicoRepository.getAll();
     }
 
     @Override
-    public Optional<MedicoDto> findById(Long id) {
+    public Optional<MedicoResponse> findById(Long id) {
         return iMedicoRepository.findById(id);
     }
 
     @Override
-    public MedicoDto save(MedicoDto medicoDto) {
+    public MedicoRequest save(MedicoRequest medicoDto) {
       
-        // Optional<UsuarioDto> usuarioDto = iUsuarioRepository.findById(id);
-        // if(usuarioDto.isPresent()){
-        // medicoDto.setUsuario(usuarioDto.get());
-        // }
-        // else{
-        //     throw new RuntimeException("Usuario no encontrado");
-        // }
-
         return iMedicoRepository.save(medicoDto);
     }
 
     @Override
-    public Optional<MedicoDto> update(MedicoDto medicoDto) {
-        Optional<MedicoDto> medicoDto2 = iMedicoRepository.findById(medicoDto.getId());
+    public Optional<MedicoRequest> update(MedicoRequest medicoDto) {
+        Optional<MedicoResponse> medicoDto2 = iMedicoRepository.findById(medicoDto.getId());
 
 
         if (medicoDto2.isEmpty()) {
@@ -64,7 +56,7 @@ public class MedicoService implements IMedicoService{
     }
 
     @Override
-    public Optional<MedicoDto> findByNombre(String nombre) {
+    public Optional<MedicoRequest> findByNombre(String nombre) {
     
         return iMedicoRepository.findByNombre(nombre);    
     }

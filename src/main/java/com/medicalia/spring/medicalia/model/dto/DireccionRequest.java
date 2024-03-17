@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DireccionDto {
+public class DireccionRequest {
 
     private Long id;
     private String calle;
@@ -16,6 +16,6 @@ public class DireccionDto {
     private String ciudad;
     private Integer numero;
     private String complemento;
-    private UsuarioDto usuario;
+    private UsuarioRequest usuario;
     
 }

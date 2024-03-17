@@ -3,16 +3,16 @@ package com.medicalia.spring.medicalia.model.repository;
 import java.util.List;
 import java.util.Optional;
 
-import com.medicalia.spring.medicalia.model.dto.UsuarioDto;
+import com.medicalia.spring.medicalia.model.dto.UsuarioRequest;
 
 
 public interface IUsuarioRepository {
 
-    List<UsuarioDto> getAll();
-    Optional<UsuarioDto> findById(Long id);
-    UsuarioDto save(UsuarioDto usuarioDto);
+    List<UsuarioRequest> getAll();
+    Optional<UsuarioRequest> findById(Long id);
+    UsuarioRequest save(UsuarioRequest usuarioDto);
     void delete(Long id);
-    Optional<UsuarioDto> findByEmail(String email);
-    Optional<UsuarioDto> findByNombreUsuario(String userName);
+    Optional<UsuarioRequest> findByEmail(String email);
+    Optional<UsuarioRequest> findByNombreUsuario(String userName);
 
 }
