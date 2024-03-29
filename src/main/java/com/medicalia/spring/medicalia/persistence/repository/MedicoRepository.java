@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
+import com.medicalia.spring.medicalia.model.dto.MedicoDireccionProjection;
 import com.medicalia.spring.medicalia.model.dto.MedicoRequest;
 import com.medicalia.spring.medicalia.model.dto.MedicoResponse;
 import com.medicalia.spring.medicalia.model.repository.IMedicoRepository;
@@ -50,6 +51,16 @@ public class MedicoRepository implements IMedicoRepository {
     @Override
     public Optional<MedicoRequest> findByNombre(String name) {
        return iMedicoCrudRepository.findByNombre(name).map(iMedicoMapper::toMedicoRequestDto);
+    }
+
+    @Override
+    public Optional<MedicoRequest> findMedicoByUserId(Long id) {
+        return iMedicoCrudRepository.findMedicoByUserId(id).map(iMedicoMapper::toMedicoRequestDto);
+    }
+
+    @Override
+    public Optional<MedicoDireccionProjection> findMedicoDireccionByUserId(Long id) {
+       return iMedicoCrudRepository.findMedicoAndDireccionByUserId(id);
     }
 
 }

@@ -5,7 +5,11 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.medicalia.spring.medicalia.exception.PacienteNotFoundException;
+import com.medicalia.spring.medicalia.exception.UsuarioNotFoundException;
+import com.medicalia.spring.medicalia.model.dto.PacienteDireccionProjection;
 import com.medicalia.spring.medicalia.model.dto.PacienteRequest;
+import com.medicalia.spring.medicalia.model.dto.PacienteResponse;
 import com.medicalia.spring.medicalia.model.dto.UsuarioRequest;
 import com.medicalia.spring.medicalia.model.repository.IPacienteRepository;
 import com.medicalia.spring.medicalia.model.repository.IUsuarioRepository;
@@ -21,45 +25,50 @@ public class PacienteService implements IPacienteService{
     private final IUsuarioRepository iUsuarioRepository;
 
     @Override
-    public List<PacienteRequest> getAll() {
+    public List<PacienteResponse> getAll() {
         return iPacienteRepository.getAll();
     }
 
     @Override
-    public Optional<PacienteRequest> findById(Long id) {
+    public Optional<PacienteResponse> findById(Long id) {
         return iPacienteRepository.findById(id);
     }
 
     @Override
     public PacienteRequest save(PacienteRequest pacienteDto) {
-      
-        // Optional<UsuarioDto> usuarioDto = iUsuarioRepository.findById(id);
-        // if(usuarioDto.isPresent()){
-        // pacienteDto.setUsuario(usuarioDto.get());
-        // }
-        // else{
-        //     throw new RuntimeException("Usuario no encontrado");
-        // }
-
         return iPacienteRepository.save(pacienteDto);
     }
 
     @Override
-    public Optional<PacienteRequest> update(PacienteRequest pacienteDto) {
-        Optional<PacienteRequest> pacienteDto2 = iPacienteRepository.findById(pacienteDto.getId());
+    public Optional<PacienteRequest> update(PacienteRequest pacienteDto, String usuarioRequest) {
 
+         Optional<UsuarioRequest> usuOptional=iUsuarioRepository.findByNombreUsuario(usuarioRequest);
 
-        if (pacienteDto2.isEmpty()) {
-            return Optional.empty();
+         if(usuOptional.isPresent()){
+            Optional<PacienteRequest> pacienteRequest = iPacienteRepository.findPacienteByUserId(usuOptional.get().getId());
+            
+            if(pacienteRequest.isPresent()){
+                
+
+            return Optional.of(iPacienteRepository.save(pacienteRequest.get()));
+            }
+        
+                throw new PacienteNotFoundException();
         }
-        pacienteDto.setNombre(pacienteDto.getNombre()== null ? pacienteDto2.get().getNombre() : pacienteDto.getNombre());
-        return Optional.of(iPacienteRepository.save(pacienteDto));
+        else{
+            throw new UsuarioNotFoundException();
+        }
     }
     
 
     @Override
     public boolean delete(Long id) {
        return false;
+    }
+
+    @Override
+    public Optional<PacienteDireccionProjection> findPacienteDireccionById(Long id) {
+       return iPacienteRepository.findPacienteDireccionByUserId(id);
     }
 
 

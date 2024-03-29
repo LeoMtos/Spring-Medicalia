@@ -31,13 +31,15 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, AuthenticationManager authenticationManager) throws Exception {
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtUtils);
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
+        jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
     return httpSecurity
             .csrf(config -> config.disable())
             .authorizeHttpRequests(auth -> {
                 auth
                     .requestMatchers("/register/**").permitAll()
-                    .requestMatchers("/medicos/**").hasRole("MEDICO") 
+                    .requestMatchers("/medicos/**").hasRole("MEDICO")
+                    .requestMatchers("/pacientes/**").hasRole("PACIENTE") 
                     .requestMatchers("/direcciones/**").hasAnyRole("MEDICO", "PACIENTE")
                     .anyRequest().authenticated();
             })

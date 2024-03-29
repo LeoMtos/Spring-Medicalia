@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 import com.medicalia.spring.medicalia.model.dto.DireccionRequest;
+import com.medicalia.spring.medicalia.model.dto.DireccionResponse;
 import com.medicalia.spring.medicalia.model.repository.IDireccionRepository;
 import com.medicalia.spring.medicalia.persistence.entity.DireccionEntity;
 import com.medicalia.spring.medicalia.persistence.mapper.IDireccionRequestMapper;
@@ -21,25 +22,25 @@ public class DireccionRepository implements IDireccionRepository {
     private final IDireccionRequestMapper iDireccionMapper;
 
     @Override
-    public List<DireccionRequest> getAll() {
-        return iDireccionMapper.toDireccionsDto(iDireccionCrudRepository.findAll());
+    public List<DireccionResponse> getAll() {
+        return iDireccionMapper.toDireccionResponses(iDireccionCrudRepository.findAll());
     }
 
     @Override
-    public Optional<DireccionRequest> findById(Long id) {
+    public Optional<DireccionResponse> findById(Long id) {
         return iDireccionCrudRepository.findById(id).
-        map(directionEntity-> iDireccionMapper.toDireccionDto(directionEntity));
+        map(directionEntity-> iDireccionMapper.toDireccionResponse(directionEntity));
     }
     
     @Override
     public DireccionRequest save(DireccionRequest medicoDto) {
         DireccionEntity direccion = iDireccionMapper.toDireccionEntity(medicoDto);
-        return iDireccionMapper.toDireccionDto(iDireccionCrudRepository.save(direccion));
+        return iDireccionMapper.toDireccionRequest(iDireccionCrudRepository.save(direccion));
     }
 
     @Override
     public Optional<DireccionRequest> findDireccionByUserId(Long id) {
-       return iDireccionCrudRepository.findDireccionByUserId(id).map(iDireccionMapper::toDireccionDto);
+       return iDireccionCrudRepository.findDireccionByUserId(id).map(iDireccionMapper::toDireccionRequest);
     }
 
 

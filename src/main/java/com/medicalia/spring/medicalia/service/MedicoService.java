@@ -5,10 +5,16 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.medicalia.spring.medicalia.exception.MedicoNotFoundException;
+import com.medicalia.spring.medicalia.exception.UsuarioNotFoundException;
+import com.medicalia.spring.medicalia.model.dto.MedicoDireccionProjection;
 import com.medicalia.spring.medicalia.model.dto.MedicoRequest;
 import com.medicalia.spring.medicalia.model.dto.MedicoResponse;
+import com.medicalia.spring.medicalia.model.dto.UsuarioRequest;
 import com.medicalia.spring.medicalia.model.repository.IMedicoRepository;
+import com.medicalia.spring.medicalia.model.repository.IUsuarioRepository;
 import com.medicalia.spring.medicalia.service.usercase.IMedicoService;
+
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class MedicoService implements IMedicoService{
 
     private final IMedicoRepository iMedicoRepository;
+    private final IUsuarioRepository iUsuarioRepository;
 
 
     @Override
@@ -36,23 +43,43 @@ public class MedicoService implements IMedicoService{
     }
 
     @Override
-    public Optional<MedicoRequest> update(MedicoRequest medicoDto) {
-        Optional<MedicoResponse> medicoDto2 = iMedicoRepository.findById(medicoDto.getId());
+    public Optional<MedicoRequest> update(MedicoRequest medicoDto, String usuarioDto) {
 
+        Optional<UsuarioRequest> usuOptional=iUsuarioRepository.findByNombreUsuario(usuarioDto);
+        
+         if(usuOptional.isPresent()){
+            Optional<MedicoRequest> medicOptional = iMedicoRepository.findMedicoByUserId(usuOptional.get().getId());
+            
+            if(medicOptional.isPresent()){
 
-        if (medicoDto2.isEmpty()) {
-            return Optional.empty();
+                medicOptional.get().setNombre(medicOptional.get().getNombre() != medicoDto.getNombre() ? medicoDto.getNombre() : medicOptional.get().getNombre());
+                medicOptional.get().setDocumento(medicOptional.get().getDocumento() != medicoDto.getDocumento() ? medicoDto.getDocumento() :medicOptional.get().getDocumento() );
+                medicOptional.get().setEspecialidad(medicOptional.get().getEspecialidad() != medicoDto.getEspecialidad() ? medicoDto.getEspecialidad() : medicOptional.get().getEspecialidad());
+                
+            return Optional.of(iMedicoRepository.save(medicOptional.get()));
+            }
+        
+                throw new MedicoNotFoundException();
         }
-        medicoDto.setNombre(medicoDto.getNombre()== null ? medicoDto2.get().getNombre() : medicoDto.getNombre());
-        medicoDto.setDocumento(medicoDto.getDocumento()==null ? medicoDto2.get().getDocumento() : medicoDto.getDocumento());
-        medicoDto.setEspecialidad(medicoDto.getEspecialidad() == null ? medicoDto2.get().getEspecialidad() : medicoDto.getEspecialidad());
-        return Optional.of(iMedicoRepository.save(medicoDto));
+        else{
+            throw new UsuarioNotFoundException();
+        }
+      
     }
-    
+
 
     @Override
     public boolean delete(Long id) {
+       Optional<MedicoResponse> medicoResponse = iMedicoRepository.findById(id);
+
+       if(medicoResponse.isPresent()){
+        iMedicoRepository.delete(id);
+        return true;
+       }
+
        return false;
+
+       
     }
 
     @Override
@@ -60,6 +87,13 @@ public class MedicoService implements IMedicoService{
     
         return iMedicoRepository.findByNombre(nombre);    
     }
+
+    @Override
+    public Optional<MedicoDireccionProjection> findMedicoDireccionById(Long id) {
+       return iMedicoRepository.findMedicoDireccionByUserId(id);
+    }
+
+    
 
 
 }

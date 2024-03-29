@@ -2,7 +2,6 @@ package com.medicalia.spring.medicalia.persistence.entity;
 
 import com.medicalia.spring.medicalia.model.dto.EspecialidadEnum;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

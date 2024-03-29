@@ -2,7 +2,6 @@ package com.medicalia.spring.medicalia.persistence.entity;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,9 +34,6 @@ public class PacienteEntity {
     @Column(name="telefono")
     private Integer numeroTelefono;
 
-    // @OneToOne
-    // @JoinColumn(name = "direccion_id")
-    // private DireccionEntity direccion;
 
     @OneToOne
     @JoinColumn(name="usuario_id",updatable = false)

@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
+import com.medicalia.spring.medicalia.model.dto.PacienteDireccionProjection;
 import com.medicalia.spring.medicalia.model.dto.PacienteRequest;
+import com.medicalia.spring.medicalia.model.dto.PacienteResponse;
 import com.medicalia.spring.medicalia.model.repository.IPacienteRepository;
 import com.medicalia.spring.medicalia.persistence.entity.PacienteEntity;
 import com.medicalia.spring.medicalia.persistence.mapper.IPacienteRequestMapper;
@@ -21,16 +23,16 @@ public class PacienteRepository implements IPacienteRepository{
 
     private final IPacienteRequestMapper iPacienteMapper;
 
-
     @Override
-    public List<PacienteRequest> getAll() {
-        List<PacienteRequest> pacienteDtos =iPacienteMapper.toPacientesDto(iPacienteCrudRepository.findAll());
-        return pacienteDtos;
+    public List<PacienteResponse> getAll() {
+        List<PacienteResponse> pacienteResponses =iPacienteMapper.toPacienteResponses(iPacienteCrudRepository.findAll());
+
+        return pacienteResponses;
     }
 
     @Override
-    public Optional<PacienteRequest> findById(Long id) {
-        return iPacienteCrudRepository.findById(id).map(iPacienteMapper::toPacienteDto);
+    public Optional<PacienteResponse> findById(Long id) {
+        return iPacienteCrudRepository.findById(id).map(iPacienteMapper::toPacienteResponse);
     }
 
     @Override
@@ -43,5 +45,18 @@ public class PacienteRepository implements IPacienteRepository{
     public void delete(Long id) {
         iPacienteCrudRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<PacienteRequest> findPacienteByUserId(Long id) {
+        return iPacienteCrudRepository.findPacienteByUserId(id).map(iPacienteMapper::toPacienteDto);
+       
+    }
+
+    @Override
+    public Optional<PacienteDireccionProjection> findPacienteDireccionByUserId(Long id) {
+
+       return iPacienteCrudRepository.findPacienteAndDireccionByUserId(id);
+    }
+    
 
 }

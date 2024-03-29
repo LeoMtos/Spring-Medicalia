@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ControllersExceptions {
 
-    @ExceptionHandler({CustomerExistsException.class, DireccionNotFoundException.class, PasswordIncorrectException.class})
+    @ExceptionHandler({CustomerExistsException.class, DireccionNotFoundException.class, PasswordIncorrectException.class,
+        MedicoNotFoundException.class})
     public ProblemDetail badRequestException(RuntimeException runtimeException) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, runtimeException.getMessage());
     }
